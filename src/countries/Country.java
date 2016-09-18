@@ -6,7 +6,16 @@ public class Country {
 
 	private int id;
 	private String name;
-	private List<Integer> medals;
+	private int medals[] = new int[3];
+	
+	public Country(){
+		
+		for(int i=0;i <3;i++)
+		{
+			this.medals[i] = 0;
+		}
+		
+	}
 	
 	public int getId(){
 		return id;
@@ -14,6 +23,7 @@ public class Country {
 	
 	public void setId(int id){
 		this.id = id;
+																																										
 	}
 	
 	public String getName(){
@@ -24,11 +34,18 @@ public class Country {
 		this.name = name;
 	}
 	
-	public List<Integer> getMedals(){
-		return medals;
+	public int[] getMedals(){
+		return this.medals;
 	}
 	
-	public void setMedals(List<Integer> medals){
-		this.medals = medals;
+	
+	public void setGoldMedal(){		
+		this.medals[0]++;
+	}
+	public void setSilverMedal(){
+		this.medals[1]++;
+	}
+	public void setBronzeMedal(){
+		this.medals[2]++;
 	}
 }

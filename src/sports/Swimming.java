@@ -5,13 +5,14 @@ import java.util.Comparator;
 import java.util.List;
 
 import athletes.Athlete;
+import countries.Country;
 
 public class Swimming extends Sport{
 
 private List<Double> results;
 	
 	@Override
-	public void getFinalResult(){ //faster between 3 shots
+	public void getFinalResult(String option, List<Country> countriesList){ //faster between 3 shots
 				
 		for(Athlete a:this.athleteList){ //run through all Athletes inside list and set Final Result
 			results = a.getResults();
@@ -41,14 +42,36 @@ private List<Double> results;
 					}
 				});
 				
-				System.out.println(this.getName()+ "\n");
-				
-				for(Athlete a:this.athleteList){ 
+				if(option.equals("medal_board")){
 					
-					System.out.println(a.getName() + " " + a.getFinalResult());
+					int idCountry;
+					for(int j=0;j < 3;j++){
+										
+						idCountry = athleteList.get(j).getCountryId();
+						
+						if(j == 0)
+							countriesList.get(idCountry -1).setGoldMedal();
+						else if (j == 1)
+							countriesList.get(idCountry -1).setSilverMedal();
+						else if (j == 2)
+							countriesList.get(idCountry -1).setBronzeMedal();			
+						
+						//nao tem ainda analise de desempate
+					}
+					
 					
 				}
+				else{
 				
-				System.out.println("\n");
+					System.out.println(this.getName()+ "\n");
+					
+					for(Athlete a:this.athleteList){ 
+						
+						System.out.println(a.getName() + " " + a.getFinalResult());
+						
+					}
+					
+					System.out.println("\n");
+				}
 	}
 }

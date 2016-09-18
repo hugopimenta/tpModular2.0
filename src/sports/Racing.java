@@ -1,6 +1,7 @@
 package sports;
 
 import athletes.Athlete;
+import countries.Country;
 
 import java.util.Collections;
 import java.util.List;
@@ -11,7 +12,7 @@ public class Racing extends Sport{
 	private List<Double> results;
 	
 	@Override
-	public void getFinalResult(){ //faster in 3 runs
+	public void getFinalResult(String option, List<Country> countriesList){ //faster in 3 runs
 				
 		for(Athlete a:this.athleteList){ //run through all Athletes inside list and set Final Result
 			results = a.getResults();
@@ -41,14 +42,36 @@ public class Racing extends Sport{
 			}
 		});
 		
-		System.out.println(this.getName()+ "\n");
-		
-		for(Athlete a:this.athleteList){ 
+if(option.equals("medal_board")){
 			
-			System.out.println(a.getName() + " " + a.getFinalResult());
+			int idCountry;
+			for(int j=0;j < 3;j++){
+								
+				idCountry = athleteList.get(j).getCountryId();
+				
+				if(j == 0)
+					countriesList.get(idCountry -1).setGoldMedal();
+				else if (j == 1)
+					countriesList.get(idCountry -1).setSilverMedal();
+				else if (j == 2)
+					countriesList.get(idCountry -1).setBronzeMedal();			
+				
+				//nao tem ainda analise de desempate
+			}
+			
 			
 		}
+		else{
 		
-		System.out.println("\n");
+			System.out.println(this.getName()+ "\n");
+			
+			for(Athlete a:this.athleteList){ 
+				
+				System.out.println(a.getName() + " " + a.getFinalResult());
+				
+			}
+			
+			System.out.println("\n");
+		}
 	}	
 }

@@ -113,29 +113,44 @@ public class Olimpiadas {
 				
 				if(sportType == 1){ //Racing						
 										
-					racingSport.getFinalResult();
+					racingSport.getFinalResult("racing", countriesList);
 				}
 				else if(sportType == 2){ //swimming				
 					
-					swimmingSport.getFinalResult();
+					swimmingSport.getFinalResult("swimmming", countriesList);
 					
 				}
 				else if(sportType == 3){ //weightlifting										
 					
-					weightliftingSport.getFinalResult();
+					weightliftingSport.getFinalResult("weigtlifting",countriesList);
 				}
 				else if(sportType == 4){ //high jump
 										
-					highJumpSport.getFinalResult();
+					highJumpSport.getFinalResult("highjump",countriesList);
 				}
 				else if(sportType == 5){ //gymnastic					
 															
-					gymnasticSport.getFinalResult();
+					gymnasticSport.getFinalResult("gymnastic",countriesList);
 				}
-				
+								
 			}
 			else if(statType == 2){ //all country stat board
-				//System.out.println("country");
+				//ṕreenchimento do quadro de medalhas
+				gymnasticSport.getFinalResult("medal_board", countriesList);
+				highJumpSport.getFinalResult("medal_board", countriesList);
+				weightliftingSport.getFinalResult("medal_board", countriesList);
+				swimmingSport.getFinalResult("medal_board", countriesList);
+				racingSport.getFinalResult("medal_board", countriesList);
+				
+							
+				//print do quadro de medalhas
+				System.out.println("Quadro de Medalhas\n");
+				System.out.println("Pais\tOutro\tPrata\tBronze");
+				for(int k=0; k < countriesList.size();k++){
+					int t[] = new int[3];
+					t = countriesList.get(k).getMedals();
+					System.out.println(countriesList.get(k).getName() + "\t" + t[0] + "\t" + t[1] + "\t" + t[2]);
+				}
 			}		
 						
 		}while(statScan.hasNextLine());

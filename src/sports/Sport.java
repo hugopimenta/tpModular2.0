@@ -3,6 +3,7 @@ package sports;
 import java.util.ArrayList;
 import java.util.List;
 import athletes.Athlete;
+import countries.Country;
 
 public abstract class Sport {
 
@@ -49,6 +50,6 @@ public abstract class Sport {
 		}
 	}
 	
-	public abstract void getFinalResult();
+	public abstract void getFinalResult(String option, List<Country> countriesList);
 	
 }
