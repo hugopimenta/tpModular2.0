@@ -1,4 +1,4 @@
-package countries;
+package modular.countries;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package athletes;
+package modular.athletes;
 
 import java.util.List;
 
