@@ -1,6 +1,6 @@
 Levantamento de Peso
 
-Alexei          218.0     
-Blake           218.0     
-Albert          217.0     
-Maxim           216.0     
+Maxim           425,00
+Alexei          424,00
+Albert          422,00
+Blake           416,00

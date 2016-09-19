@@ -1,5 +1,5 @@
 Ginastica artística
 
-Stanislav       9.299999999999999
-Jeremy          9.25      
-Honda           9.075000000000001
+Stanislav       9,30
+Jeremy          9,25
+Honda           9,08
