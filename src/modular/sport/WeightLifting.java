@@ -29,7 +29,7 @@ public class WeightLifting extends Sport {
 			for (int i = 0; i < results.size(); i++) {
 
 				if (results.get(i) >= final_result) {
-					final_result = results.get(i);
+					final_result += results.get(i);
 				}
 			}
 

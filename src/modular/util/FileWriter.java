@@ -34,12 +34,13 @@ public final class FileWriter {
 
 		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("estatistica-2.txt"), "UTF-8"))) {
 			writer.write("Quadro de Medalhas\n\n");
-			writer.write(String.format("%-10s %-10s %-10s %-10s%n", "Pais", "Ouro", "Prata", "Bronze"));
+			String header = String.format("%-10s %-10s %-10s %-10s%n", "Pais", "Ouro", "Prata", "Bronze").trim();
+			writer.write(header);
 			for (int k = 0; k < countriesList.size(); k++) {
 				int medals[] = new int[3];
 				medals = countriesList.get(k).getMedals();
 				String line = String.format("%-10s %-10s %-10s %-10s%n", countriesList.get(k).getName(), medals[0],
-						medals[1], medals[2]);
+						medals[1], medals[2]).trim();
 				writer.write(line);
 			}
 			writer.close();
@@ -55,7 +56,7 @@ public final class FileWriter {
 			writer.write(sport.getName() + "\n\n");
 
 			for (Athlete athlete : sport.getAthleteList()) {
-				writer.write(String.format("%-15s %-10.2f%n", athlete.getName(), athlete.getFinalResult()));
+				writer.write(String.format("%-15s %-10.2f%n", athlete.getName(), athlete.getFinalResult()).trim());
 
 			}
 			writer.close();

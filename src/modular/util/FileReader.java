@@ -24,15 +24,15 @@ public final class FileReader {
 	public static List<Country> getCountries() throws FileNotFoundException {
 		List<Country> countriesList = new ArrayList<>();
 		Scanner countriesScan = new Scanner(new File("paises.txt"), "UTF-8");
-		do {
+
+		while (countriesScan.hasNextLine()) {
 			Country country = new Country();
 			StringTokenizer st = new StringTokenizer(countriesScan.nextLine(), ";");
 			country.setId(Integer.parseInt(st.nextToken()));
 			country.setName(st.nextToken());
 
 			countriesList.add(country);
-
-		} while (countriesScan.hasNextLine());
+		}
 
 		countriesScan.close();
 
@@ -42,7 +42,7 @@ public final class FileReader {
 	public static void getAthletesList(Racing racingSport, Swimming swimmingSport, WeightLifting weightliftingSport,
 			HighJump highJumpSport, Gymnastic gymnasticSport) throws FileNotFoundException, ParseException {
 		Scanner athleteScan = new Scanner(new File("atletas.txt"), "UTF-8");
-		do {
+		while (athleteScan.hasNextLine()) {
 			Athlete athlete = new Athlete();
 			StringTokenizer st = new StringTokenizer(athleteScan.nextLine(), ";|");
 			athlete.setId(Integer.parseInt(st.nextToken()));
@@ -71,8 +71,7 @@ public final class FileReader {
 			} else if (athlete.getSportId() == Olimpiadas.GYMNASTIC) {
 				gymnasticSport.addToAthleteList(athlete);
 			}
-
-		} while (athleteScan.hasNextLine());
+		}
 
 		athleteScan.close();
 	}

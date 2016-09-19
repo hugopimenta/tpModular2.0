@@ -10,7 +10,6 @@ import modular.country.Country;
 import modular.sport.Gymnastic;
 import modular.sport.HighJump;
 import modular.sport.Racing;
-import modular.sport.Sport;
 import modular.sport.Swimming;
 import modular.sport.WeightLifting;
 import modular.util.FileReader;
@@ -28,19 +27,12 @@ public class Olimpiadas {
 
 	public static void main(String[] args) throws Exception {
 
-		List<Sport> sports = new ArrayList<>();
-
 		// Inicializando esportes
 		Racing racingSport = new Racing();
-		sports.add(racingSport);
 		Swimming swimmingSport = new Swimming();
-		sports.add(swimmingSport);
 		WeightLifting weightLiftingSport = new WeightLifting();
-		sports.add(weightLiftingSport);
 		HighJump highJumpSport = new HighJump();
-		sports.add(highJumpSport);
 		Gymnastic gymnasticSport = new Gymnastic();
-		sports.add(gymnasticSport);
 
 		List<Country> countriesList = new ArrayList<>();
 		countriesList = FileReader.getCountries();
@@ -48,8 +40,9 @@ public class Olimpiadas {
 		// Insere os atletas nos seus respectivos esportes
 		FileReader.getAthletesList(racingSport, swimmingSport, weightLiftingSport, highJumpSport, gymnasticSport);
 
-		Scanner statScan = new Scanner(new File("estatisticas.txt"));
-		do {
+		Scanner statScan = new Scanner(new File("estatisticas.txt"), "UTF-8");
+		
+		while (statScan.hasNextLine()) {
 			StringTokenizer st = new StringTokenizer(statScan.nextLine(), ";");
 
 			int statType = Integer.parseInt(st.nextToken());
@@ -70,13 +63,13 @@ public class Olimpiadas {
 					gymnasticSport.getFinalResult(countriesList);
 				}
 
-			} else if (statType == MEDALBOARD) { 
+			} else if (statType == MEDALBOARD) {
 				// Preenchimento do quadro de medalhas
-				FileWriter.writeMedalsFile(racingSport, swimmingSport, weightLiftingSport, highJumpSport, gymnasticSport,
-						countriesList);
+				FileWriter.writeMedalsFile(racingSport, swimmingSport, weightLiftingSport, highJumpSport,
+						gymnasticSport, countriesList);
 			}
 
-		} while (statScan.hasNextLine());
+		}
 
 		statScan.close();
 	}
