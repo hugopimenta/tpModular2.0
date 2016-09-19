@@ -6,14 +6,15 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-import modular.countries.Country;
-import modular.sports.Gymnastic;
-import modular.sports.HighJump;
-import modular.sports.Racing;
-import modular.sports.Sport;
-import modular.sports.Swimming;
-import modular.sports.WeightLifting;
+import modular.country.Country;
+import modular.sport.Gymnastic;
+import modular.sport.HighJump;
+import modular.sport.Racing;
+import modular.sport.Sport;
+import modular.sport.Swimming;
+import modular.sport.WeightLifting;
 import modular.util.FileReader;
+import modular.util.FileWriter;
 
 public class Olimpiadas {
 
@@ -71,20 +72,8 @@ public class Olimpiadas {
 
 			} else if (statType == MEDALBOARD) { 
 				// Preenchimento do quadro de medalhas
-				gymnasticSport.getMedalResult(countriesList);
-				highJumpSport.getMedalResult(countriesList);
-				weightLiftingSport.getMedalResult(countriesList);
-				swimmingSport.getMedalResult(countriesList);
-				racingSport.getMedalResult(countriesList);
-
-				// print do quadro de medalhas
-				System.out.println("Quadro de Medalhas\n");
-				System.out.println("Pais\tOutro\tPrata\tBronze");
-				for (int k = 0; k < countriesList.size(); k++) {
-					int t[] = new int[3];
-					t = countriesList.get(k).getMedals();
-					System.out.println(countriesList.get(k).getName() + "\t" + t[0] + "\t" + t[1] + "\t" + t[2]);
-				}
+				FileWriter.writeMedalsFile(racingSport, swimmingSport, weightLiftingSport, highJumpSport, gymnasticSport,
+						countriesList);
 			}
 
 		} while (statScan.hasNextLine());

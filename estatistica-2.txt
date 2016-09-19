@@ -1,0 +1,8 @@
+Quadro de Medalhas
+
+Pais       Ouro       Prata      Bronze    
+USA        2          2          2         
+RÃºssia    2          1          0         
+Brasil     1          0          1         
+JapÃ£o     0          2          1         
+Chile      0          0          1         

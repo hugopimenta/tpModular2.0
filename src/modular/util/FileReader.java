@@ -11,19 +11,19 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 import modular.Olimpiadas;
-import modular.athletes.Athlete;
-import modular.countries.Country;
-import modular.sports.Gymnastic;
-import modular.sports.HighJump;
-import modular.sports.Racing;
-import modular.sports.Swimming;
-import modular.sports.WeightLifting;
+import modular.athlete.Athlete;
+import modular.country.Country;
+import modular.sport.Gymnastic;
+import modular.sport.HighJump;
+import modular.sport.Racing;
+import modular.sport.Swimming;
+import modular.sport.WeightLifting;
 
 public final class FileReader {
-	
+
 	public static List<Country> getCountries() throws FileNotFoundException {
 		List<Country> countriesList = new ArrayList<>();
-		Scanner countriesScan = new Scanner(new File("paises.txt"));
+		Scanner countriesScan = new Scanner(new File("paises.txt"), "UTF-8");
 		do {
 			Country country = new Country();
 			StringTokenizer st = new StringTokenizer(countriesScan.nextLine(), ";");
@@ -33,17 +33,15 @@ public final class FileReader {
 			countriesList.add(country);
 
 		} while (countriesScan.hasNextLine());
-		
+
 		countriesScan.close();
-		
+
 		return countriesList;
 	}
-	
-	
+
 	public static void getAthletesList(Racing racingSport, Swimming swimmingSport, WeightLifting weightliftingSport,
-			HighJump highJumpSport, Gymnastic gymnasticSport)
-			throws FileNotFoundException, ParseException {
-		Scanner athleteScan = new Scanner(new File("atletas.txt"));
+			HighJump highJumpSport, Gymnastic gymnasticSport) throws FileNotFoundException, ParseException {
+		Scanner athleteScan = new Scanner(new File("atletas.txt"), "UTF-8");
 		do {
 			Athlete athlete = new Athlete();
 			StringTokenizer st = new StringTokenizer(athleteScan.nextLine(), ";|");
@@ -58,12 +56,11 @@ public final class FileReader {
 
 			do {
 				results.add(format.parse(st.nextToken()).doubleValue());
-
 			} while (st.hasMoreTokens());
 
 			athlete.setResults(results);
 
-			if (athlete.getSportId() == Olimpiadas.RACING) { 
+			if (athlete.getSportId() == Olimpiadas.RACING) {
 				racingSport.addToAthleteList(athlete);
 			} else if (athlete.getSportId() == Olimpiadas.SWIMMING) {
 				swimmingSport.addToAthleteList(athlete);

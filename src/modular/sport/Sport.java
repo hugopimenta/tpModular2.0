@@ -1,16 +1,17 @@
-package modular.sports;
+package modular.sport;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import modular.athletes.Athlete;
-import modular.countries.Country;
+import modular.athlete.Athlete;
+import modular.country.Country;
 
 public abstract class Sport {
 
 	public static final String MEDALS = "MEDALS";
 
 	private int id;
+	private String name;
 	protected List<Athlete> athleteList = new ArrayList<>();
 
 	public int getId() {
@@ -22,7 +23,11 @@ public abstract class Sport {
 	}
 
 	public String getName() {
-		return this.getClass().getName();
+		return this.name;
+	}
+	
+	protected void setName(String name) {
+		this.name = name;
 	}
 
 	public List<Athlete> getAthleteList() {
@@ -71,20 +76,7 @@ public abstract class Sport {
 			else if (j == 2)
 				countriesList.get(idCountry - 1).setBronzeMedal();
 
-			// nao tem ainda analise de desempate
 		}
-	}
-
-	protected void printStandings() {
-		System.out.println(this.getName() + "\n");
-
-		for (Athlete a : this.athleteList) {
-
-			System.out.println(a.getName() + " " + a.getFinalResult());
-
-		}
-
-		System.out.println("\n");
 	}
 	
 }

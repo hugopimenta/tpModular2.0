@@ -1,6 +1,4 @@
-package modular.countries;
-
-import java.util.List;
+package modular.country;
 
 public class Country {
 

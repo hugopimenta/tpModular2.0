@@ -1,17 +1,20 @@
-package modular.sports;
+package modular.sport;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import modular.athletes.Athlete;
-import modular.countries.Country;
+import modular.athlete.Athlete;
+import modular.country.Country;
+import modular.util.FileWriter;
+import modular.util.comparator.HigherBetterComparator;
 
 public class Gymnastic extends Sport {
 
 	private List<Double> results;
 
 	public Gymnastic() {
+		setName("Ginastica artística");
 		this.setId(5);
 	}
 
@@ -20,7 +23,6 @@ public class Gymnastic extends Sport {
 
 		// run through all Athletes inside, list and set Final Result
 		for (Athlete athlete : this.athleteList) {
-
 			results = athlete.getResults();
 
 			double final_result_aux = 0;
@@ -33,25 +35,16 @@ public class Gymnastic extends Sport {
 
 			athlete.setFinalResult(final_result);
 
-			// System.out.println(a.getName() + " " +final_result);
-
 		}
-		// print resultado poderiamos dividir isso em outra funcao?
-		Collections.sort(this.athleteList, new Comparator<Athlete>() {
-
-			public int compare(Athlete a1, Athlete a2) {
-				double x = a1.getFinalResult();
-				double y = a2.getFinalResult();
-				return Double.compare(y, x); // Desempate alfabetico?
-
-			}
-		});
-
+		
+		Comparator<Athlete> comparator = new HigherBetterComparator();
+		Collections.sort(this.athleteList, comparator);
+		
 		if (Sport.MEDALS.equals(option)) {
 			setMedals(countriesList);
 
 		} else {
-			printStandings();
+			FileWriter.writeSportStanding(this);
 		}
 	}
 
